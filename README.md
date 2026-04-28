@@ -75,7 +75,8 @@ PyScanner operates in a 4-stage pipeline:
 3.  **AI Triage:** The findings and their code slices are sent to an LLM. The AI acts as a judge, discarding false positives and confirming true threats.
 4.  **Enrichment & Reporting:** Confirmed findings are enriched with OWASP categories, severity labels, and remediation code before being compiled into the final Security Score and Report.
 
-![Pipeline Diagram Placeholder](docs/assets/pipeline.png)
+![Pipeline Diagram Placeholder](docs/asse<img width="1024" height="559" alt="pyscanner" src="https://github.com/user-attachments/assets/f34430d8-28f2-4197-ab3e-2704cb98260a" />
+ts/pipeline.png)
 
 ---
 
