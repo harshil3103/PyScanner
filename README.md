@@ -4,9 +4,7 @@
   <p><strong>The AI-Powered Security Review Assistant for Python</strong></p>
   
   [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://python.org)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-  [![Security Score](https://img.shields.io/badge/Security-A%2B-success.svg)](#)
-</div>
+
 
 <br>
 
