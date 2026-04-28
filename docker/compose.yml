@@ -1,0 +1,20 @@
+services:
+  scanner:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/work:ro
+    working_dir: /work
+    command: ["scan", ".", "--format", "json"]
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["local-llm"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  ollama: {}
