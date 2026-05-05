@@ -25,4 +25,8 @@ def get_provider(config: ScanConfig, api_key: str | None) -> LlmProvider | None:
         from pyscanner.llm.providers.gemini_provider import GeminiProvider
 
         return GeminiProvider(api_key=api_key or "")
+    if config.llm_provider == "ollama":
+        from pyscanner.llm.providers.ollama_provider import OllamaProvider
+
+        return OllamaProvider()  # no API key needed for local Ollama
     return None

@@ -40,7 +40,7 @@ def scan(
     if llm and effective_offline:
         typer.secho("Note: --llm enables network access; turning off offline mode.", fg="yellow")
         effective_offline = False
-    llm_provider = provider if provider in ("openai", "anthropic", "gemini") else None
+    llm_provider = provider if provider in ("openai", "anthropic", "gemini", "ollama") else None
     if llm and not llm_provider:
         typer.secho("Warning: --llm without --provider defaults to None; set PYSCANNER secrets.", fg="yellow")
     cfg = ScanConfig(
@@ -55,7 +55,12 @@ def scan(
         key_file=settings.config_dir / "fernet.key",
         secrets_file=settings.config_dir / "secrets.json",
     )
-    report = run_scan(target.resolve(), cfg, store=store, secret_store=sec_store if llm else None)
+    report = run_scan(
+        target.resolve(),
+        cfg,
+        store=store,
+        secret_store=sec_store if (llm and llm_provider != "ollama") else None,
+    )
     out_path = Path("pyscanner-report")
     if format == "json":
         p = out_path.with_suffix(".json")

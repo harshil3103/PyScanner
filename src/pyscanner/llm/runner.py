@@ -41,8 +41,10 @@ class LlmRunner:
             return None
         if self._calls >= self._config.max_llm_calls:
             return None
-        key = self._api_key()
-        if not key:
+        # Ollama is a local provider — no API key required
+        is_local = self._config.llm_provider == "ollama"
+        key = None if is_local else self._api_key()
+        if not key and not is_local:
             return None
         provider = get_provider(self._config, key)
         if provider is None:
@@ -54,6 +56,8 @@ class LlmRunner:
             f"{slice_.snippet_text}\n"
             "----- END CODE -----\n"
         )
+        import time
+        time.sleep(4.0)  # Rate limit safety (stay under 15 RPM)
         raw = provider.complete_json(_SYSTEM, user, schema_hint=LlmSecurityFinding.__name__)
         self._calls += 1
         try:

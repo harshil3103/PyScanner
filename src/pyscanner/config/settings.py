@@ -15,7 +15,7 @@ class ScanConfig(BaseSettings):
     offline: bool = True
     enable_slm: bool = True
     enable_llm: bool = False
-    llm_provider: Literal["openai", "anthropic", "gemini"] | None = None
+    llm_provider: Literal["openai", "anthropic", "gemini", "ollama"] | None = None
     max_llm_calls: int = 50
     slice_token_budget: int = 4000
     rule_packs: list[str] = Field(default_factory=lambda: ["python_security"])
